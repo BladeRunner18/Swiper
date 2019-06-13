@@ -1,0 +1,161 @@
+
+@font-face {font-family: "iconfont";
+    src: url('iconfont.eot?t=1559098331263'); /* IE9 */
+    src: url('iconfont.eot?t=1559098331263#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAMAAAsAAAAABsgAAAKyAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqBKIEgATYCJAMMCwgABCAFhG0HPhvuBREVjFuyL6Ec21FQYJLsGsh57EL7DcBhjE9XIIEECgAAAACIh6/9Xs/d3QchdIkCVGiBZCYqEwUqLExcbFSBnaowFYbdV9WtfUPnWqUVJfBANxtuVgU4qse/048IwGd5mMjNQ01iOzC8PeYQt+3/tN1S/+Sa0Qd0ybMsP31H0u78l6awJU6jFEIiJPmAttsAoRO+/7h3+ifQB2k9jHJae59/6gLq4oACHXOSFUlC3jB2gUvYTKDfrDVxeOz5SKuwegXi8a7JkDYXVBSWaYW6ZmIRr5Ha9JK+4VX4/fhrPVqSKrMGnl67JbLbi97yczehjwghApxeIWMNhbioTZ7LglFZv7K0F9aKkOaKdB2hUJfX9h8eSRA1q3wQLKFUotd3halqAsV3nc5wd9ysYJucfESIqSnLGfhM1KZeTL5QrubyRJ6PTbqE71Eqq+QBL6DUC2WuLCb//n2swPpcb4vFxnCM9/3ebphUjiNTH05Hdqy5BtPua63ZBGG7Ise+GMgV6MpVRj/QPf3PCQRjJ+Iv+a+lgO/TycNAV9G/RCvBRL9N1LOq6BLLlIsqdIWmO5vqYU9APvfoWN5xf8Zrp26tPrQjvI2Z23S35lK0kGtQGbAJtZZ5B4xVt9PHJoihKH30jr4BhFE/kAz7CtmoX7SQf1CZ9g+10RhCv7OYLDhgIXJzKRgqJhC9QR5zQ45FTVR5h2lXhZKVhIwnlDaPgO94xcwtNihzDGmf00CVgIRruAHbYVUxWOECY3UyVXtyXap7kxNz3TMOCBRSKAEib0AuxhrkN1am9Pk7KNWphKSFVuN9gkQrbx34HF4P9FbZ9KLdyzWtZ6mAUgQQwWrgBrRDlQoDtr5dAcWUIxsRt05cuxb1VTrrq+vv20SvZ1jjh5EiRzH0xN1FzPbNKxxVSNrrAQAA') format('woff2'),
+    url('iconfont.woff?t=1559098331263') format('woff'),
+    url('iconfont.ttf?t=1559098331263') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+    url('iconfont.svg?t=1559098331263#iconfont') format('svg'); /* iOS 4.1- */
+  }
+  
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .icon-you-copy-copy:before {
+    content: "\e513";
+  }
+  
+  .icon-left:before {
+    content: "\e501";
+  }
+  
+
+.swiper-slide{
+    float: left;
+}
+.swiper-layout{
+    overflow: hidden;
+    width: 100%;
+}
+.swiper-container{
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    /* Fix of Webkit flickering */
+    z-index: 1;
+}
+.swiper-wrapper::after{
+    content: "";
+    display: block;
+    height: 0px;
+    clear: both;
+    visibility: hidden;
+
+}
+.swiper-wrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
+    -o-transition-property: transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform;
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+.swiper-wrapper {
+    -webkit-transform: translate3d(0px, 0, 0);
+    transform: translate3d(0px, 0, 0);
+  }
+
+  .swiper-slide {
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    -webkit-transition-property: -webkit-transform;
+    transition-property: -webkit-transform;
+    -o-transition-property: transform;
+    transition-property: transform;
+    transition-property: transform, -webkit-transform;
+  }
+
+  .swiper-pagination{
+      width: 100%;
+      position: absolute;
+      bottom: 20px;
+      left: 0px;
+      text-align: center;
+      z-index: 10;
+  }
+  .swiper-pagination .swiper-pagination-bullet{
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin: 0px 5px;
+      display: inline-block;
+      background: #d4d4d4;
+      cursor: pointer;
+  }
+  .swiper-pagination .swiper-pagination-active{
+      background: #4390ee;
+  }
+
+  .swiper-button-prev{
+    color: #4390ee;
+    position: absolute;
+    z-index: 10;
+    cursor: pointer;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    margin-top: -20px;
+    font-family: "iconfont" !important;
+    font-size: 40px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.swiper-button-prev::before{
+    color: inherit;
+    content: "\e501";
+    line-height: 40px;
+    opacity: 0.5;   
+}
+
+.swiper-button-next{
+    color: #4390ee;
+    position: absolute;
+    z-index: 10;
+    cursor: pointer;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    margin-top: -20px;
+    font-family: "iconfont" !important;
+    font-size: 40px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.swiper-button-next::before{
+    content: "\e513";
+    color: inherit;
+    line-height: 40px;
+    opacity: 0.5;   
+}
+.swiper-button-next:hover::before{
+    opacity: 1;   
+}
+.swiper-button-prev:hover::before{
+    opacity: 1;   
+}

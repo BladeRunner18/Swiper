@@ -1,0 +1,351 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1">  
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Swiper</title>
+    <link rel="stylesheet" href="./css/default.css">
+    <link rel="stylesheet" href="./css/kimbie.dark.css">
+    <link rel="stylesheet" href="./css/swiper.css">
+    <link rel="stylesheet" href="./css/demo.css">
+    <script src="./js/jquery-1.9.1.min.js"></script>
+    <script src="./js/swiper.js"></script>
+    <script src="./js/highlight.pack.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="item">
+            <div class="title">基础效果（pc端可拖拽 移动端可滑动）</div>
+            <div class="swiper1 swiper-container  height300">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide slide1">1</div>
+                    <div class="swiper-slide slide2">2</div>
+                    <div class="swiper-slide slide3">3</div>
+                    <div class="swiper-slide slide4">4</div>
+                </div>
+            </div>
+            <pre class="code">
+                <code class="javascript">
+                var swiper1 = new Swiper('.swiper1');
+            </code></pre>
+        </div>
+
+        <div class="item">
+                <div class="title">自动轮播</div>
+                <div class="swiper7 swiper-container  height300">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide slide1">1</div>
+                        <div class="swiper-slide slide2">2</div>
+                        <div class="swiper-slide slide3">3</div>
+                        <div class="swiper-slide slide4">4</div>
+                    </div>
+                </div>
+                <pre class="code">
+                    <code class="javascript">
+                        var swiper7 = new Swiper('.swiper7',{
+                            autoplay:{
+                                delay:3000,       //时间
+                                stopOnHover:false,//鼠标悬浮是否停止
+                            }
+                        })
+                </code></pre>
+        </div>
+
+        <div class="item">
+                <div class="title">左右、分页器</div>
+                <div class="swiper2 swiper-container  height300">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide slide1">1</div>
+                        <div class="swiper-slide slide2">2</div>
+                        <div class="swiper-slide slide3">3</div>
+                        <div class="swiper-slide slide4">4</div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev" style="color: white"></div>
+                    <div class="swiper-button-next" style="color: white"></div>
+                </div>
+                <pre class="code"><code class="javascript">
+                        var swiper2 = new Swiper('.swiper2',{
+                            pagination:{
+                                el:'.swiper2 .swiper-pagination',
+                            },
+                            navigation:{
+                                prevEl:'.swiper2 .swiper-button-prev',
+                                nextEl:'.swiper2 .swiper-button-next',
+                            }
+                        })
+                        //左右按钮图标引用了iconfont变成了字体  可以通过color来改变样式 大小就是font-size 
+                        //引用的时候把 iconfont.woff文件也放到css文件夹下  这个文件是为了兼容ie9
+                        //左右按钮对div的位置没有要求  如果遇到需要把按钮放到轮播以外的时候  就把div放到外面 
+                        //因为里面设置了超出隐藏              
+                </code></pre>
+        </div>
+
+        <div class="item">
+                <div class="title">无线循环</div>
+                <div class="swiper3 swiper-container  height300">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide slide1">1</div>
+                        <div class="swiper-slide slide2">2</div>
+                        <div class="swiper-slide slide3">3</div>
+                        <div class="swiper-slide slide4">4</div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev" style="color: white"></div>
+                    <div class="swiper-button-next" style="color: white"></div>
+                </div>
+                <pre class="code"><code class="javascript">
+                        var swiper2 = new Swiper('.swiper2',{
+                            loop:true,
+                        })                
+                </code></pre>
+        </div>
+
+
+        <div class="item">
+                <div class="title">多个slide</div>
+                <div class="swiper4 swiper-container  height300">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide slide1">1</div>
+                        <div class="swiper-slide slide2">2</div>
+                        <div class="swiper-slide slide3">3</div>
+                        <div class="swiper-slide slide4">4</div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev" style="color: white"></div>
+                    <div class="swiper-button-next" style="color: white"></div>
+                </div>
+                <pre class="code"><code class="javascript">
+                        var swiper2 = new Swiper('.swiper2',{
+                            slidesPerView:3,
+                            spaceBetween:30,
+                        })                
+                </code></pre>
+        </div>
+
+        <div class="item">
+                <div class="title">响应式</div>
+                <div class="swiper8 swiper-container  height300">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide slide1">1</div>
+                        <div class="swiper-slide slide2">2</div>
+                        <div class="swiper-slide slide3">3</div>
+                        <div class="swiper-slide slide4">4</div>
+                        <div class="swiper-slide slide5">5</div>
+                        <div class="swiper-slide slide6">6</div>
+                    </div>
+                </div>
+                <pre class="code"><code class="javascript">
+                        var swiper8 = new Swiper('.swiper8',{
+                            slidesPerView:4,
+                            spaceBetween:20,
+                            breakPoints:{
+                                1024:{
+                                    slidesPerView:3,
+                                    spaceBetween:15,
+                                },
+                                768:{
+                                    slidesPerView:2,
+                                    spaceBetween:10,
+                                },
+                                500:{
+                                    slidesPerView:1,
+                                    spaceBetween:10,
+                                }
+                            }
+                        })                
+                </code></pre>
+        </div>
+
+        <div class="item">
+                <div class="title">缩略图</div>
+                <div class="swiper5 swiper-container  height300">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide slide1">1</div>
+                        <div class="swiper-slide slide2">2</div>
+                        <div class="swiper-slide slide3">3</div>
+                        <div class="swiper-slide slide4">4</div>
+                        <div class="swiper-slide slide5">5</div>
+                        <div class="swiper-slide slide6">6</div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev" style="color: white"></div>
+                    <div class="swiper-button-next" style="color: white"></div>
+                </div>
+                <div class="thumb5 swiper-container">
+                    <div class="swiper-wrapper">
+                            <div class="swiper-slide slide1">1</div>
+                            <div class="swiper-slide slide2">2</div>
+                            <div class="swiper-slide slide3">3</div>
+                            <div class="swiper-slide slide4">4</div>
+                            <div class="swiper-slide slide5">5</div>
+                            <div class="swiper-slide slide6">6</div>
+                    </div>
+                </div>
+                <pre class="code"><code class="javascript">
+                        var thumb5 = new Swiper('.thumb5',{
+                            slidesPerView:4,
+                            spaceBetween:20,
+                        })
+                
+                        var swiper5 = new Swiper('.swiper5',{
+                            navigation:{
+                                prevEl:'.swiper5 .swiper-button-prev',
+                                nextEl:'.swiper5 .swiper-button-next',
+                            },
+                            thumb:{
+                                swiper:thumb5,
+                            }
+                        })    
+                        // 缩略图必须要在轮播之前调用 
+                        // 不可以添加循环属性
+                </code></pre>
+        </div>
+
+
+        <div class="item">
+                <div class="title">布局效果</div>
+                <div class="swiper6 swiper-container  height300 swiper-layout">
+                    <div class="swiper-wrapper" swiper-1920='3,20' swiper-768='2,10' swiper-500='1,0'>
+                        <div class="swiper-slide slide1">1</div>
+                        <div class="swiper-slide slide2">2</div>
+                        <div class="swiper-slide slide3">3</div>
+                        <div class="swiper-slide slide4">4</div>
+                        <div class="swiper-slide slide5">5</div>
+                        <div class="swiper-slide slide6">6</div>
+                    </div>
+                </div>
+                <pre class="code"><code class="javascript">
+                    //页面上经常会有列表之类的  每次算百分比  然后再写媒体查询小屏幕再改变百分比 很费劲  
+                    //并且有的列表到了手机端平铺下来  页面会拉的特别长  所以手机端做成滚动的会比较好  页面列表可能很多 
+                    // 一个个用插件写  再一个个调用太麻烦了  
+                    // 现在直接在swiper-wrapper 上面添加属性 第一个数字是一行的个数  第二个为间距 还有一个参数可以设置
+                    // swiper-play=''  默认为true 控制一行放不下是否做成滑动  如果设为 false 则可以直接平铺下来  不滑动
+                    // div class="swiper-wrapper" swiper-1920='3,20' swiper-768='2,10' swiper-500='1,0'
+                    // 并且不需要单独调用  直接在bottom 统一调用 只要加上一个相同的class就可以了 
+                        $('.swiper-layout').each(function(){
+                            new Swiper(this,{useData:true})
+                        })
+                </code></pre>
+        </div>
+
+
+        <div class="item">
+                <div class="title">全部参数</div>
+                <pre class="code"><code class="javascript">
+                    //如果需要和swiper插件同时使用  将第三行代码global.Swiper = factory();中的Swiper改成任意别的名字 
+                    // 就不会与swiper插件冲突
+                        //     slidesPerView : 1,    每一屏的数量      同swiper  
+                        //     spaceBetween : 0,     边距             同swiper  
+                        //     loop:false,           循环             同swiper
+                        //     autoplay:null,        自动轮播         同swiper  
+                        //     speed:500,            切换速度         同swiper
+                        //     navigation:null,      左右切换按钮      同swiper
+                        //     pagination:null,      分页的点          同swiper
+                        //     breakPoints:{},       响应式参数        同swiper
+                        //     thumb:null,           缩略图            同swiper
+                        //     drag:true,            开启或关闭拖拽切换        
+                        //     touch:true,           开启活关闭滑动切换         
+                        //     responsive:true,      开启或关闭响应式          
+                        //     useData:false,        布局的时候使用         
+                        //     play:true,            布局的时候使用  
+                </code></pre>
+        </div>
+    </div>
+
+
+    <script>
+
+        
+        hljs.initHighlightingOnLoad();
+
+        var swiper1 = new Swiper('.swiper1');
+
+        var swiper7 = new Swiper('.swiper7',{
+           autoplay:{
+               delay:3000,
+               stopOnHover:false,
+           }
+        })
+
+        var swiper2 = new Swiper('.swiper2',{
+            pagination:{
+                el:'.swiper2 .swiper-pagination',
+            },
+            navigation:{
+                prevEl:'.swiper2 .swiper-button-prev',
+                nextEl:'.swiper2 .swiper-button-next',
+            }
+        })
+
+
+        var swiper3 = new Swiper('.swiper3',{
+            pagination:{
+                el:'.swiper3 .swiper-pagination',
+            },
+            navigation:{
+                prevEl:'.swiper3 .swiper-button-prev',
+                nextEl:'.swiper3 .swiper-button-next',
+            },
+            loop:true,
+        })
+
+        var swiper4 = new Swiper('.swiper4',{
+            pagination:{
+                el:'.swiper4 .swiper-pagination',
+            },
+            navigation:{
+                prevEl:'.swiper4 .swiper-button-prev',
+                nextEl:'.swiper4 .swiper-button-next',
+            },
+            slidesPerView:3,
+            spaceBetween:30,
+        })
+
+        var thumb5 = new Swiper('.thumb5',{
+            slidesPerView:4,
+            spaceBetween:20,
+            // loop:true,
+        })
+
+        var swiper5 = new Swiper('.swiper5',{
+            navigation:{
+                prevEl:'.swiper5 .swiper-button-prev',
+                nextEl:'.swiper5 .swiper-button-next',
+            },
+            // loop:true,
+            thumb:{
+                swiper:thumb5,
+            }
+        })
+
+        var swiper8 = new Swiper('.swiper8',{
+            slidesPerView:4,
+            spaceBetween:20,
+            breakPoints:{
+                1024:{
+                    slidesPerView:3,
+                    spaceBetween:15,
+                },
+                768:{
+                    slidesPerView:2,
+                    spaceBetween:10,
+                },
+                500:{
+                    slidesPerView:1,
+                    spaceBetween:10,
+                }
+            }
+        })    
+
+
+        $('.swiper-layout').each(function(){
+            new Swiper(this,{useData:true})
+        })
+
+
+    </script>
+</body>
+</html>
