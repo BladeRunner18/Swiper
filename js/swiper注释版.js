@@ -13,10 +13,12 @@
 
 
 
-
+// 立即执行函数，将window，jquery作为参数，
+// 第三个参数为一个函数，传到立即执行函数里面执行，执行结果返回构造函数Swiper
 
 (function (global, $, factory) {
 
+    
     global.Swiper = factory();
 
 })(window, jQuery, function () {
@@ -25,8 +27,10 @@
 
     var vision = '1.0';
 
+    //作者
     var Author = '万户 / Whir';
 
+    //插件的默认参数
     var defaultOptions = {
         slidesPerView: 1,
         spaceBetween: 0,
@@ -45,6 +49,7 @@
         thumb: null,
     }
 
+    //当useData为true的时候获取到dom结构上面的参数，并将参数设置到swiper.params里面
     function getBreakPoints() {
         var swiper = this;
         if (swiper.params.useData) {
@@ -75,6 +80,7 @@
         return swiper.params.breakPoints;
     }
 
+    //设置一些参数
     function setParams() {
         var swiper = this;
         swiper.slides = swiper.$el.find('.swiper-slide');
@@ -93,6 +99,10 @@
         swiper.responsiveFn();
     }
 
+    //检查浏览器然后设置三个参数到swiper实例上
+    //swiper.isPC 判断是否是pc端
+    //swiper.support3d 判断是否支持css3动画
+    //swiper.supportTouch 判断是否支持滑动
     function checkBrowser() {
         var swiper = this,
             translate3D = "translate3d(0px, 0px, 0px)",
@@ -130,6 +140,7 @@
         swiper.supportTouch = isTouch;
     }
 
+    //改变动画过渡时间的函数
     function changeTransition(time) {
         var swiper = this;
         var transition = {
@@ -142,6 +153,7 @@
         return swiper;
     }
 
+    //给每个slide添加属性
     function addClass() {
         var swiper = this;
         for (var i = 0; i < swiper.slides.length; i++) {
@@ -149,6 +161,7 @@
         }
     }
 
+    //无线循环实现函数
     function loopCreate() {
         var swiper = this;
         var params = swiper.params;
@@ -168,6 +181,7 @@
         }
     }
 
+    //根据屏幕窗口大小和传进来的响应式参数  来动态更新宽度边距等
     function responsiveFn() {
         var swiper = this;
         var points = swiper.params.breakPoints;
@@ -194,6 +208,8 @@
 
     }
 
+    //更新slide   通过三个参数  来计算出每个silide的宽度  
+    //三个参数分别为 最外层宽度  页面展示的个数，每个之间的边距
     function upDateSlide(outerWidth, num, space) {
         var swiper = this;
         var width = (outerWidth - (space * (num - 1))) / num;
@@ -220,6 +236,7 @@
         }
     }
 
+    //获取所有轮播的translate值 并保存到数组  所有的轮播都是通过这个数组来实现的
     function getSlideGrid() {
         var swiper = this;
         var arr = [];
@@ -231,6 +248,7 @@
     }
 
 
+    //更新active的class 和分页器的class
     function upDateClass() {
         var swiper = this;
         var index = swiper.index;
@@ -247,6 +265,7 @@
             swiper.wrapper.find('.swiper-slide-index-' + realIndex + ':not(.swiper-slide-duplicate)').next().addClass('swiper-slide-next');        }
     }
  
+    //pc端拖拽实现函数
     function drag() {
         var swiper = this, isDown = false, x, y, newx, translate, index,direction;
         swiper.wrapper.on('mousedown', function (event) {
@@ -264,12 +283,15 @@
                 swiper.wrapper.get(0).addEventListener('click',swiper.onClick);
                 newx = event.clientX - x;
                 if(direction == ''){
+                    //第一次move判断方向
                     if(newx < 0 ){swiper.dir = 'next';direction='next'}
                     if(newx > 0) {swiper.dir='prev';direction='prev'}
+                    //检查是否已经到边界
                     swiper.checkOverflow();            
                     translate = swiper.slideGrid[swiper.index];
                 }
                 if (swiper.index === 0 || swiper.index === swiper.slideGrid.length - 1) {
+                    //如果已经到边界  则减少newx的值  来达到一种到底了拖不动的感觉
                     newx = newx / 3;
                 }
                 swiper.doTranslate(-(translate - newx), true);
@@ -300,6 +322,7 @@
         })
     }
 
+    //移动端滑动实现韩式
     function touch() {
         var swiper = this, isTouch = false, x, y, newx,newy,translate,direction='';
         swiper.wrapper.get(0).addEventListener('touchstart', function (event) {
@@ -357,6 +380,7 @@
     }
 
 
+    //响应函数 
     function responsive() {
         var swiper = this;
         $(window).on('resize', function () {
@@ -364,7 +388,7 @@
         })
     }
 
-
+    //获取当前dow元素的translate的值
     function getCurTranslate() {
         var swiper = this;
         var cur = swiper.wrapper.css('transform').replace(/[^0-9\,]/g, '').split(',')[4];
@@ -372,6 +396,7 @@
     }
 
 
+    //监听每次动画执行结束后执行的回调函数  暂时没有启用
     function transitionEnd() {
         var swiper = this;
         var events = ['webkitTransitionEnd', 'transitionend'];
@@ -384,6 +409,7 @@
         }
     }
 
+    //添加事件
     function eventHandle(eventType, selector, handle) {
         var swiper = this;
         if (selector) {
@@ -391,6 +417,7 @@
         }
     }
 
+    //当开启循环的时候  检查是否到边界 来实现无限循环
     function checkOverflow(dir) {
         var swiper = this;
         if (swiper.params.loop === false) { return false }
@@ -423,6 +450,7 @@
         }
     }
 
+    //滑动到第几个
     function slideTo(index) {
         var swiper = this;
         if (swiper.isAnimating) { return false }
@@ -432,6 +460,7 @@
         typeof swiper.afterSlide === 'function' && swiper.afterSlide();
     }
 
+    //滑动到下一个
     function slideNext() {
         var swiper = this;
         swiper.dir = 'next';
@@ -444,6 +473,7 @@
         }, 10)
     }
 
+    //因为是用slideGrid获取的所有滑动的值的数组，所以当前的index 并不一定等于第index个slide
     function slideToRealIndex() {
         var swiper = this;
         var index = swiper.index;
@@ -459,8 +489,10 @@
     }
 
 
+    //执行动画 所有最终都是通过这个函数来执行的滑动
     function doTranslate(pixels, noAnimate) {
         var swiper = this;
+        //如果支持css3，使用translate
         if (swiper.support3d) {
             var translate = {
                 "-webkit-transform": "translate3d(" + pixels + "px, 0px, 0px)",
@@ -472,6 +504,7 @@
             // typeof noAnimate =='undefined' ? swiper.isAnimating = true : '';
             swiper.wrapper.css(translate);
         }
+        //不支持css3 将使用jquery 的animate方法来实现
         else {
             if (typeof noAnimate == 'undefined') {
                 // swiper.isAnimating = true;
@@ -485,6 +518,7 @@
         return swiper;
     }
 
+    //jquery的animate方法  
     function moveCss2(pixels, speed) {
         var swiper = this;
         swiper.wrapper.animate({ 'left': pixels + 'px', }, speed, function () {
@@ -492,6 +526,7 @@
         });
     }
 
+    //组织默认点击事件，有时候我们需要在a标签上拖拽 必要要阻止默认事件  不然页面会跳转
     function onClick (e){
         e.preventDefault();
         e.stopPropagation();
@@ -528,20 +563,26 @@
     //构造函数
     function Swiper(el, options) {
         this.$el = $(el);
+        //检查是否传了参数，如果传了参数将参数和默认参数合并
         options ? this.params = $.extend({}, defaultOptions, options) : this.params = defaultOptions;
+        //执行初始化
         this.init();
+        //根据传入的参数来选择是否要加载某些模块
         this.useModules();
     }
 
+    //将上面的所有方法都添加的swiper构造函数的原型链上  这样子实例将共享所有方法
     Object.keys(methods).forEach(function (key) {
         !Swiper.prototype[key] ? Swiper.prototype[key] = methods[key] : '';
     })
 
 
+    //初始化函数
     Swiper.prototype.init = function () {
 
         var swiper = this;
 
+        //获取dom上面的参数
         swiper.getBreakPoints();
 
         swiper.setParams();
@@ -562,6 +603,7 @@
 
     }
 
+    //为构造函数添加某个模块的添加方法
     Swiper.prototype.use = function (module) {
         var swiper = this;
         if (Array.isArray(module)) {
@@ -572,15 +614,15 @@
         else return swiper.installModule(module);
     }
 
+    //为添加的模块初始化
     Swiper.prototype.installModule = function (module) {
         var swiper = this;
         if (!swiper.prototype.module) { swiper.prototype.module = {} }
         swiper.prototype.module[module.name] = module
         // swiper.module[module.name].create = swiper.module[module.name].create.bind(swiper)
-
-
     }
 
+    //跟据参数来选择是否加载某些模块
     Swiper.prototype.useModules = function () {
         var swiper = this;
         Object.keys(swiper.params).forEach(function (key) {
@@ -596,6 +638,8 @@
 
 
     //components
+
+    //自动轮播组件
     var autoplay$1 = {
         run: function () {
             var swiper = this;
@@ -635,6 +679,7 @@
         },
     }
 
+    //左右按钮组件
     var navigation$1 = {
         prev: function () {
             var swiper = this;
@@ -688,6 +733,7 @@
         }
     }
 
+    //分页器组件
     var pagination$1 = {
         update: function () {
             var swiper = this;
@@ -740,7 +786,7 @@
         }
     }
 
-
+    //缩略图组件
     var thumb$1 = {
         init: function () {
             var swiper = this;
@@ -814,7 +860,10 @@
         Swiper.installModule = Swiper.prototype.installModule;
     }
 
+    //将组件添加到原型链中
     Swiper.use(components);
 
+    //返回构造函数
     return Swiper;
+
 })
