@@ -12,13 +12,12 @@
 // })
 
 
-
+// 闭包
 // 立即执行函数，将window，jquery作为参数，
 // 第三个参数为一个函数，传到立即执行函数里面执行，执行结果返回构造函数Swiper
 
 (function (global, $, factory) {
 
-    
     global.Swiper = factory();
 
 })(window, jQuery, function () {
@@ -32,20 +31,34 @@
 
     //插件的默认参数
     var defaultOptions = {
+        //每一页的数量
         slidesPerView: 1,
+        //每一个之间的边距
         spaceBetween: 0,
         initIndex: '',
+        //循环
         loop: false,
+        //自动切换
         autoplay: null,
+        //切换速度
         speed: 500,
+        //左右按钮
         navigation: null,
+        //分页器
         pagination: null,
+        //响应式设置
         breakPoints: {},
+        //拖拽切换
         drag: true,
+        //滑动切换
         touch: true,
+        //响应式
         responsive: true,
+        //使用dom上的参数
         useData: false,
+        //是否需要轮播
         play: true,
+        //缩略图
         thumb: null,
     }
 
@@ -53,18 +66,25 @@
     function getBreakPoints() {
         var swiper = this;
         if (swiper.params.useData) {
+            //获取到swiper-wrappper这个元素上面的所有属性
             var nodeAttr = swiper.$el.find('.swiper-wrapper').get(0).attributes;
             var data = {};
+            //判断是否是数字的正则表达式
             var reg = /^[0-9]*$/;
+            //用数组的slice方法将伪数组转换为数组然后遍历
             [].slice.call(nodeAttr).forEach(function (node) {
+                //获取到属性名称
                 var attrName = node.name;
+                //如果属性名称是以swiper开头
                 if (attrName.indexOf('swiper') === 0) {
                     var exp = attrName.substring(7);
                     data[exp] = {};
+                    //设置参数
                     if (exp == 'play') { node.value === 'false' ? swiper.params.play = false : swiper.params.play = true }
                     if (exp == 'drag') { node.value === 'false' ? swiper.params.drag = false : swiper.params.drag = true }
                     if (exp == 'pagination') { swiper.params.pagination.el=node.value }
                     if (exp == 'navigation') { swiper.params.navigation.prevEl=node.value.split(',')[0]; swiper.params.navigation.nextEl = node.value.split(',')[1];}
+                    //验证如果是数字
                     if (reg.test(exp)) {
                         data[exp].slidesPerView = parseInt(node.value.split(',')[0]);
                         data[exp].spaceBetween = parseInt(node.value.split(',')[1]);
@@ -86,11 +106,11 @@
         swiper.slides = swiper.$el.find('.swiper-slide');
         swiper.wrapper = swiper.$el.find('.swiper-wrapper');
         if (swiper.params.play) {
+            //切换方向
             swiper.dir = '';
             swiper.realIndex = 0;
             swiper.checkBrowser();
             swiper.realSlides = swiper.wrapper.find('.swiper-slide').length;
-            swiper.changeTransition(swiper.params.speed);
             swiper.isAnimating = false;
             swiper.addClass();
             swiper.params.initIndex != '' ? swiper.index = swiper.params.initIndex : swiper.index = 0;
@@ -165,6 +185,7 @@
     function loopCreate() {
         var swiper = this;
         var params = swiper.params;
+        //根据每页的个数然后复制相应个slide分别依次插入到前面和后面，每次切换前调用checkoverflow来检查是否是最后一个 
         if (params.slidesPerView === 1) {
             swiper.wrapper.prepend($(swiper.slides[swiper.slides.length - 1]).clone(true).addClass('swiper-slide-duplicate'));
             swiper.wrapper.append($(swiper.slides[0]).clone(true).addClass('swiper-slide-duplicate'));
@@ -189,6 +210,7 @@
         var num, space, outerWidth;
         var index = swiper.index;
         outerWidth = swiper.$el.width();
+        //讲breakpoints里面的参数从大到小排序一下然后遍历  获取到当前屏幕设置的个数和边距
         if (outerWidth != swiper.width) {
             var sortPoints = Object.keys(points).sort(function (a, b) {
                 return b - a;
@@ -202,6 +224,7 @@
             swiper.width = outerWidth;
             swiper.params.slidesPerView = num;
             swiper.params.spaceBetween = space;
+            //获取到之后就可以更新swiper的宽度了 
             swiper.upDateSlide(outerWidth, num, space)
             swiper.params.play && swiper.slideTo(index);
         }
@@ -267,7 +290,7 @@
  
     //pc端拖拽实现函数
     function drag() {
-        var swiper = this, isDown = false, x, y, newx, translate, index,direction;
+        var swiper = this, isDown = false, x, y, newx, translate, index,direction='';
         swiper.wrapper.on('mousedown', function (event) {
             if (swiper.isAnimating) { return false }
             event = event || window.event;
@@ -322,7 +345,7 @@
         })
     }
 
-    //移动端滑动实现韩式
+    //移动端滑动实现函数
     function touch() {
         var swiper = this, isTouch = false, x, y, newx,newy,translate,direction='';
         swiper.wrapper.get(0).addEventListener('touchstart', function (event) {
@@ -526,7 +549,7 @@
         });
     }
 
-    //组织默认点击事件，有时候我们需要在a标签上拖拽 必要要阻止默认事件  不然页面会跳转
+    //阻止默认点击事件，有时候我们需要在a标签上拖拽 必要要阻止默认事件  不然页面会跳转
     function onClick (e){
         e.preventDefault();
         e.stopPropagation();

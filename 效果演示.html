@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,44 +8,57 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Swiper</title>
     <link rel="stylesheet" href="./css/default.css">
-    <link rel="stylesheet" href="./css/kimbie.dark.css">
-    <link rel="stylesheet" href="./css/swiper.css">
+    <link rel="stylesheet" href="./css/monokai.css">
+    <link rel="stylesheet" href="./css/WhirSwiper.css">
     <link rel="stylesheet" href="./css/demo.css">
     <script src="./js/jquery-1.9.1.min.js"></script>
-    <script src="./js/swiper.js"></script>
+    <script src="./js/WhirSwiper.js"></script>
     <script src="./js/highlight.pack.js"></script>
 </head>
 <body>
     <div class="container">
+      
         <div class="item">
+            <div class="title">只兼容到ie9  ie8就崩了 使用的话就讲whirSwiper.js 和WhirSwiper.css 复制过去就行了 其他文件不是</div>
+            <div class="title"></div>
             <div class="title">基础效果（pc端可拖拽 移动端可滑动）</div>
-            <div class="swiper1 swiper-container  height300">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide slide1">1</div>
-                    <div class="swiper-slide slide2">2</div>
-                    <div class="swiper-slide slide3">3</div>
-                    <div class="swiper-slide slide4">4</div>
+            <div class="swiper1 whir-container  height300">
+                <div class="whir-wrapper">
+                    <div class="whir-slide slide1">1</div>
+                    <div class="whir-slide slide2">2</div>
+                    <div class="whir-slide slide3">3</div>
+                    <div class="whir-slide slide4">4</div>
                 </div>
             </div>
             <pre class="code">
                 <code class="javascript">
-                var swiper1 = new Swiper('.swiper1');
+                var swiper1 = new WhirSwiper('.swiper1');
+               
             </code></pre>
+            <xmp style="font-size: 20px;">
+                    结构  
+                    <div class="whir-container">
+                        <div class="whir-wrapper">
+                            <div class="whir-slide"></div>
+                            <div class="whir-slide"></div>
+                        </div>
+                    </div>
+            </xmp> 
         </div>
 
         <div class="item">
                 <div class="title">自动轮播</div>
-                <div class="swiper7 swiper-container  height300">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide slide1">1</div>
-                        <div class="swiper-slide slide2">2</div>
-                        <div class="swiper-slide slide3">3</div>
-                        <div class="swiper-slide slide4">4</div>
+                <div class="swiper7 whir-container  height300">
+                    <div class="whir-wrapper">
+                        <div class="whir-slide slide1">1</div>
+                        <div class="whir-slide slide2">2</div>
+                        <div class="whir-slide slide3">3</div>
+                        <div class="whir-slide slide4">4</div>
                     </div>
                 </div>
                 <pre class="code">
                     <code class="javascript">
-                        var swiper7 = new Swiper('.swiper7',{
+                        var swiper7 = new WhirSwiper('.swiper7',{
                             autoplay:{
                                 delay:3000,       //时间
                                 stopOnHover:false,//鼠标悬浮是否停止
@@ -55,25 +69,25 @@
 
         <div class="item">
                 <div class="title">左右、分页器</div>
-                <div class="swiper2 swiper-container  height300">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide slide1">1</div>
-                        <div class="swiper-slide slide2">2</div>
-                        <div class="swiper-slide slide3">3</div>
-                        <div class="swiper-slide slide4">4</div>
+                <div class="swiper2 whir-container  height300">
+                    <div class="whir-wrapper">
+                        <div class="whir-slide slide1">1</div>
+                        <div class="whir-slide slide2">2</div>
+                        <div class="whir-slide slide3">3</div>
+                        <div class="whir-slide slide4">4</div>
                     </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-prev" style="color: white"></div>
-                    <div class="swiper-button-next" style="color: white"></div>
+                    <div class="whir-pagination"></div>
+                    <div class="whir-button-prev" style="color: white"></div>
+                    <div class="whir-button-next" style="color: white"></div>
                 </div>
                 <pre class="code"><code class="javascript">
-                        var swiper2 = new Swiper('.swiper2',{
+                        var swiper2 = new WhirSwiper('.swiper2',{
                             pagination:{
-                                el:'.swiper2 .swiper-pagination',
+                                el:'.swiper2 .whir-pagination',
                             },
                             navigation:{
-                                prevEl:'.swiper2 .swiper-button-prev',
-                                nextEl:'.swiper2 .swiper-button-next',
+                                prevEl:'.swiper2 .whir-button-prev',
+                                nextEl:'.swiper2 .whir-button-next',
                             }
                         })
                         //左右按钮图标引用了iconfont变成了字体  可以通过color来改变样式 大小就是font-size 
@@ -85,19 +99,19 @@
 
         <div class="item">
                 <div class="title">无线循环</div>
-                <div class="swiper3 swiper-container  height300">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide slide1">1</div>
-                        <div class="swiper-slide slide2">2</div>
-                        <div class="swiper-slide slide3">3</div>
-                        <div class="swiper-slide slide4">4</div>
+                <div class="swiper3 whir-container  height300">
+                    <div class="whir-wrapper">
+                        <div class="whir-slide slide1">1</div>
+                        <div class="whir-slide slide2">2</div>
+                        <div class="whir-slide slide3">3</div>
+                        <div class="whir-slide slide4">4</div>
                     </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-prev" style="color: white"></div>
-                    <div class="swiper-button-next" style="color: white"></div>
+                    <div class="whir-pagination"></div>
+                    <div class="whir-button-prev" style="color: white"></div>
+                    <div class="whir-button-next" style="color: white"></div>
                 </div>
                 <pre class="code"><code class="javascript">
-                        var swiper2 = new Swiper('.swiper2',{
+                        var swiper2 = new WhirSwiper('.swiper2',{
                             loop:true,
                         })                
                 </code></pre>
@@ -106,19 +120,19 @@
 
         <div class="item">
                 <div class="title">多个slide</div>
-                <div class="swiper4 swiper-container  height300">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide slide1">1</div>
-                        <div class="swiper-slide slide2">2</div>
-                        <div class="swiper-slide slide3">3</div>
-                        <div class="swiper-slide slide4">4</div>
+                <div class="swiper4 whir-container  height300">
+                    <div class="whir-wrapper">
+                        <div class="whir-slide slide1">1</div>
+                        <div class="whir-slide slide2">2</div>
+                        <div class="whir-slide slide3">3</div>
+                        <div class="whir-slide slide4">4</div>
                     </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-prev" style="color: white"></div>
-                    <div class="swiper-button-next" style="color: white"></div>
+                    <div class="whir-pagination"></div>
+                    <div class="whir-button-prev" style="color: white"></div>
+                    <div class="whir-button-next" style="color: white"></div>
                 </div>
                 <pre class="code"><code class="javascript">
-                        var swiper2 = new Swiper('.swiper2',{
+                        var swiper2 = new WhirSwiper('.swiper2',{
                             slidesPerView:3,
                             spaceBetween:30,
                         })                
@@ -127,18 +141,18 @@
 
         <div class="item">
                 <div class="title">响应式</div>
-                <div class="swiper8 swiper-container  height300">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide slide1">1</div>
-                        <div class="swiper-slide slide2">2</div>
-                        <div class="swiper-slide slide3">3</div>
-                        <div class="swiper-slide slide4">4</div>
-                        <div class="swiper-slide slide5">5</div>
-                        <div class="swiper-slide slide6">6</div>
+                <div class="swiper8 whir-container  height300">
+                    <div class="whir-wrapper">
+                        <div class="whir-slide slide1">1</div>
+                        <div class="whir-slide slide2">2</div>
+                        <div class="whir-slide slide3">3</div>
+                        <div class="whir-slide slide4">4</div>
+                        <div class="whir-slide slide5">5</div>
+                        <div class="whir-slide slide6">6</div>
                     </div>
                 </div>
                 <pre class="code"><code class="javascript">
-                        var swiper8 = new Swiper('.swiper8',{
+                        var swiper8 = new WhirSwiper('.swiper8',{
                             slidesPerView:4,
                             spaceBetween:20,
                             breakPoints:{
@@ -161,39 +175,39 @@
 
         <div class="item">
                 <div class="title">缩略图</div>
-                <div class="swiper5 swiper-container  height300">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide slide1">1</div>
-                        <div class="swiper-slide slide2">2</div>
-                        <div class="swiper-slide slide3">3</div>
-                        <div class="swiper-slide slide4">4</div>
-                        <div class="swiper-slide slide5">5</div>
-                        <div class="swiper-slide slide6">6</div>
+                <div class="swiper5 whir-container  height300">
+                    <div class="whir-wrapper">
+                        <div class="whir-slide slide1">1</div>
+                        <div class="whir-slide slide2">2</div>
+                        <div class="whir-slide slide3">3</div>
+                        <div class="whir-slide slide4">4</div>
+                        <div class="whir-slide slide5">5</div>
+                        <div class="whir-slide slide6">6</div>
                     </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-prev" style="color: white"></div>
-                    <div class="swiper-button-next" style="color: white"></div>
+                    <div class="whir-pagination"></div>
+                    <div class="whir-button-prev" style="color: white"></div>
+                    <div class="whir-button-next" style="color: white"></div>
                 </div>
-                <div class="thumb5 swiper-container">
-                    <div class="swiper-wrapper">
-                            <div class="swiper-slide slide1">1</div>
-                            <div class="swiper-slide slide2">2</div>
-                            <div class="swiper-slide slide3">3</div>
-                            <div class="swiper-slide slide4">4</div>
-                            <div class="swiper-slide slide5">5</div>
-                            <div class="swiper-slide slide6">6</div>
+                <div class="thumb5 whir-container">
+                    <div class="whir-wrapper">
+                            <div class="whir-slide slide1">1</div>
+                            <div class="whir-slide slide2">2</div>
+                            <div class="whir-slide slide3">3</div>
+                            <div class="whir-slide slide4">4</div>
+                            <div class="whir-slide slide5">5</div>
+                            <div class="whir-slide slide6">6</div>
                     </div>
                 </div>
                 <pre class="code"><code class="javascript">
-                        var thumb5 = new Swiper('.thumb5',{
+                        var thumb5 = new WhirSwiper('.thumb5',{
                             slidesPerView:4,
                             spaceBetween:20,
                         })
                 
-                        var swiper5 = new Swiper('.swiper5',{
+                        var swiper5 = new WhirSwiper('.swiper5',{
                             navigation:{
-                                prevEl:'.swiper5 .swiper-button-prev',
-                                nextEl:'.swiper5 .swiper-button-next',
+                                prevEl:'.swiper5 .whir-button-prev',
+                                nextEl:'.swiper5 .whir-button-next',
                             },
                             thumb:{
                                 swiper:thumb5,
@@ -207,42 +221,40 @@
 
         <div class="item">
                 <div class="title">布局效果</div>
-                <div class="swiper6 swiper-container  height300 swiper-layout">
-                    <div class="swiper-wrapper" swiper-1920='3,20' swiper-768='2,10' swiper-500='1,0'>
-                        <div class="swiper-slide slide1">1</div>
-                        <div class="swiper-slide slide2">2</div>
-                        <div class="swiper-slide slide3">3</div>
-                        <div class="swiper-slide slide4">4</div>
-                        <div class="swiper-slide slide5">5</div>
-                        <div class="swiper-slide slide6">6</div>
+                <div class="swiper6 whir-container  height300 whir-layout">
+                    <div class="whir-wrapper" whir-1920='3,20' whir-768='2,10' whir-500='1,0'>
+                        <div class="whir-slide slide1">1</div>
+                        <div class="whir-slide slide2">2</div>
+                        <div class="whir-slide slide3">3</div>
+                        <div class="whir-slide slide4">4</div>
+                        <div class="whir-slide slide5">5</div>
+                        <div class="whir-slide slide6">6</div>
                     </div>
                 </div>
                 <pre class="code"><code class="javascript">
                     //页面上经常会有列表之类的  每次算百分比  然后再写媒体查询小屏幕再改变百分比 很费劲  
                     //并且有的列表到了手机端平铺下来  页面会拉的特别长  所以手机端做成滚动的会比较好  页面列表可能很多 
                     // 一个个用插件写  再一个个调用太麻烦了  
-                    // 现在直接在swiper-wrapper 上面添加属性 第一个数字是一行的个数  第二个为间距 还有一个参数可以设置
-                    // swiper-play=''  默认为true 控制一行放不下是否做成滑动  如果设为 false 则可以直接平铺下来  不滑动
-                    // div class="swiper-wrapper" swiper-1920='3,20' swiper-768='2,10' swiper-500='1,0'
+                    // 现在直接在whir-wrapper 上面添加属性 第一个数字是一行的个数  第二个为间距 还有一个参数可以设置
+                    // whir-play=''  默认为true 控制一行放不下是否做成滑动  如果设为 false 则可以直接平铺下来  不滑动
+                    // div class="whir-wrapper" whir-1920='3,20' whir-768='2,10' whir-500='1,0'
                     // 并且不需要单独调用  直接在bottom 统一调用 只要加上一个相同的class就可以了 
-                        $('.swiper-layout').each(function(){
-                            new Swiper(this,{useData:true})
+                        $('.whir-layout').each(function(){
+                            new WhirSwiper(this,{useData:true})
                         })
                 </code></pre>
         </div>
 
 
         <div class="item">
-                <div class="title">全部参数</div>
+                <div class="title">全部参数和一些方法</div>
                 <pre class="code"><code class="javascript">
-                    //如果需要和swiper插件同时使用  将第三行代码global.Swiper = factory();中的Swiper改成任意别的名字 
-                    // 就不会与swiper插件冲突
                         //     slidesPerView : 1,    每一屏的数量      同swiper  
                         //     spaceBetween : 0,     边距             同swiper  
                         //     loop:false,           循环             同swiper
                         //     autoplay:null,        自动轮播         同swiper  
                         //     speed:500,            切换速度         同swiper
-                        //     navigation:null,      左右切换按钮      同swiper
+                        //     navigation:null,      左右切换按钮     同swiper
                         //     pagination:null,      分页的点          同swiper
                         //     breakPoints:{},       响应式参数        同swiper
                         //     thumb:null,           缩略图            同swiper
@@ -252,68 +264,205 @@
                         //     useData:false,        布局的时候使用         
                         //     play:true,            布局的时候使用  
                 </code></pre>
+
+                <pre class="code"><code class="javascript">
+
+                       
+
+                       每一个生成的swiper实例都可以调用到内部的方法
+                       swiper.slideTo(index);  这是切换的方法，可以切换到第几屏，尝试在控制台输入swiper1.slideTo(3)，这个swiper1是这个演示效果的第一个swiper，就是最上面那个轮播
+                       当设置loop的时候和每一页的个数 > 1 的时候  你传入的 1 不一定会跳转到第一屏，这个时候就需要计算一下才能之知道你需要跳转到的是第几个  这个用的也很少
+                       swiper.slideNext()  切换到下一个
+                       swiper.autoplay.stop()  手动控制关闭自动轮播
+                       swiper.autoplay.run()   手动控制开启自动轮播
+                       其他的内部方法不建议在外面调用  也没有必要在外部调用
+                       关于回调函数，很遗憾没有添加一些回调函数让插件功能更强大 
+                       如果一定需要每次切换之后触发一个函数的话 
+                       可以手动设置 swiper.afterSlide = function() { //写在这里面的函数每次切换都会触发一次 但是这个触发会在动画效果还没执行完就触发 }
+
+                       关于直接在swiper-wrapper 标签上面写参数，只支持以下参数
+                       swiper-loop 
+                       swiper-drag
+                       swiper-pagination 
+                       swiper-navigation //左右两个元素，中间用逗号来分隔
+                       swiper-play
+                       swiper-1920 // 后面的是屏幕大小  可以任意设置  对数字没有要求 用逗号隔开 如 swiper-1920='5,20'
+
+
+                       并不是所有的使用场景我都测试过  如果bug  请反馈
+                </code></pre>
         </div>
+
+        <div class="item">
+            <div class="title">展开和收缩菜单或者导航（红色的方块就暂且当做是箭头，点击试试）</div>
+            <div class="menu">
+                <ul id="root">
+                    <li>
+                        <a href="javascript:;">一级菜单</a>
+                        <ul>
+                            <li><a href="">二级菜单</a>
+                                <ul>
+                                    <li><a href="">三级菜单</a>
+                                        <ul>
+                                            <li><a href="">四级菜单</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                            <a href="">一级菜单</a>
+                            <ul>
+                                <li><a href="">二级菜单</a>
+                                    <ul>
+                                        <li><a href="">三级菜单</a>
+                                            <ul>
+                                                <li><a href="">四级菜单</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                    </li>
+                    <li>
+                            <a href="">一级菜单</a>
+                            <ul>
+                                <li><a href="">二级菜单</a>
+                                    <ul>
+                                        <li><a href="">三级菜单</a>
+                                            <ul>
+                                                <li><a href="">四级菜单</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                    </li>
+                    <li>
+                            <a href="">一级菜单</a>
+                            <ul>
+                                <li><a href="">二级菜单</a>
+                                    <ul>
+                                        <li><a href="">三级菜单</a>
+                                            <ul>
+                                                <li><a href="">四级菜单</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                </ul>
+            </div>
+            <pre class="code"><code class="javascript">
+                调用方法   $.pullNav($('#root'))
+                使用这个结构必须是ul li 这个方法会根据你的元素判断是否有下一级子栏目  
+                如果有 则会创建一个箭头的div并添加上点击事件
+                如果没有  则不会创建div 所以这个方法并不是有多级下拉的时候才可以用 
+                相反  不管你有没有下拉或者有多少及  都可以用 
+                有两个参数，一个是你菜单的顶层的id或者class  这个参数为必须
+                第二个参数为你要添加点击事件的元素，比如你的需求是不通过点击箭头下拉
+                而是点击一整行都可以触发下拉，你就可以传入class传入的这个元素父级元素必须是li
+                比如  $.pullNav($('#root')，'div')
+                这个函数可能不会满足所有需求，有时候需要根据需求可以稍微改一下  
+                这个方法放在轮播插件的里面开头的地方  只有15行  很简单
+            </code></pre>
+        </div>
+
+
+        <div class="item">
+                <div class="title">点击切换效果</div>
+                <div class="tab">
+                    <ul>
+                        <li>菜单一</li>
+                        <li>菜单二</li>
+                        <li>菜单三</li>
+                    </ul>
+                </div>
+                <div class="cont">
+                    <ul>
+                        <li class="slide1">内容一</li>
+                        <li class="slide2">内容二</li>
+                        <li class="slide3">内容三</li>
+                    </ul>
+                </div>
+                <pre class="code"><code class="javascript">
+                    调用方法 $.tabChange('.tab li','.cont li','click')
+                    这样的效果  8行代码就解决的问题 没必要用superslide 
+                    第一个参数为菜单的class，第二个参数为内容的class，第三个参数为触发条件可以click，mouseover，
+                    有时候可能遇到不但切换显示的内容，还有修改掉后面更多里面的链接的时候，或者像政府站页面上有很多相同的切换的，可以自己稍微改一下
+
+
+
+                    这两个方法都继承在jquery上面 所以调用的时候需要用jquery调用
+                </code></pre>
+            </div>
     </div>
 
 
     <script>
 
-        
+        $.pullNav($('#root'))
+
+        $.tabChange('.tab li','.cont li','click')
+    
         hljs.initHighlightingOnLoad();
 
-        var swiper1 = new Swiper('.swiper1');
+        var swiper1 = new WhirSwiper('.swiper1');
 
-        var swiper7 = new Swiper('.swiper7',{
+        var swiper7 = new WhirSwiper('.swiper7',{
+           loop:true,
            autoplay:{
                delay:3000,
                stopOnHover:false,
            }
         })
 
-        var swiper2 = new Swiper('.swiper2',{
+        var swiper2 = new WhirSwiper('.swiper2',{
             pagination:{
-                el:'.swiper2 .swiper-pagination',
+                el:'.swiper2 .whir-pagination',
             },
             navigation:{
-                prevEl:'.swiper2 .swiper-button-prev',
-                nextEl:'.swiper2 .swiper-button-next',
+                prevEl:'.swiper2 .whir-button-prev',
+                nextEl:'.swiper2 .whir-button-next',
             }
         })
 
 
-        var swiper3 = new Swiper('.swiper3',{
+        var swiper3 = new WhirSwiper('.swiper3',{
             pagination:{
-                el:'.swiper3 .swiper-pagination',
+                el:'.swiper3 .whir-pagination',
             },
             navigation:{
-                prevEl:'.swiper3 .swiper-button-prev',
-                nextEl:'.swiper3 .swiper-button-next',
+                prevEl:'.swiper3 .whir-button-prev',
+                nextEl:'.swiper3 .whir-button-next',
             },
             loop:true,
         })
 
-        var swiper4 = new Swiper('.swiper4',{
+        var swiper4 = new WhirSwiper('.swiper4',{
             pagination:{
-                el:'.swiper4 .swiper-pagination',
+                el:'.swiper4 .whir-pagination',
             },
             navigation:{
-                prevEl:'.swiper4 .swiper-button-prev',
-                nextEl:'.swiper4 .swiper-button-next',
+                prevEl:'.swiper4 .whir-button-prev',
+                nextEl:'.swiper4 .whir-button-next',
             },
             slidesPerView:3,
             spaceBetween:30,
         })
 
-        var thumb5 = new Swiper('.thumb5',{
+        var thumb5 = new WhirSwiper('.thumb5',{
             slidesPerView:4,
             spaceBetween:20,
             // loop:true,
         })
 
-        var swiper5 = new Swiper('.swiper5',{
+        var swiper5 = new WhirSwiper('.swiper5',{
             navigation:{
-                prevEl:'.swiper5 .swiper-button-prev',
-                nextEl:'.swiper5 .swiper-button-next',
+                prevEl:'.swiper5 .whir-button-prev',
+                nextEl:'.swiper5 .whir-button-next',
             },
             // loop:true,
             thumb:{
@@ -321,7 +470,7 @@
             }
         })
 
-        var swiper8 = new Swiper('.swiper8',{
+        var swiper8 = new WhirSwiper('.swiper8',{
             slidesPerView:4,
             spaceBetween:20,
             breakPoints:{
@@ -341,8 +490,9 @@
         })    
 
 
-        $('.swiper-layout').each(function(){
-            new Swiper(this,{useData:true})
+
+        $('.whir-layout').each(function(){
+            new WhirSwiper(this,{useData:true})
         })
 
 

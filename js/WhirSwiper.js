@@ -1,15 +1,9 @@
 
 
 
-//插件调用参数说明
 
 //基于jquery  在此插件之前要引入jquery
 //作者 '万户 / Whir'
-
-// 调用方法
-// var swiper = new Swiper ('.swiper-container',{
-//    //参数
-// })
 
 
 
@@ -17,7 +11,43 @@
 
 (function (global, $, factory) {
 
-    global.Swiper = factory();
+
+    global.WhirSwiper = factory();
+
+    //二级菜单切换函数
+    function pullNav(root,triggerEl){
+        var trigger;
+        root.children('li').each(function(index,element){
+            var $el = $(element);
+            if($el.children('ul').length !== 0 ){
+                var arrow = $('<i class =\'arrow\'></i>').appendTo($el);
+                triggerEl ? trigger = triggerEl : trigger = '.arrow';
+                $el.children(trigger).on('click',function(){
+                    $(this).parent().children('ul').slideToggle();
+                    $(this).parent().siblings().children('ul').slideUp();
+                    $(this).parent().toggleClass('on');
+                    $(this).parent().siblings().removeClass('on');
+                })
+                $.pullNav($el.children('ul'),triggerEl);
+            }
+        }) 
+    }
+
+    function tabChange (el,cont,trigger) {
+        $(el).eq(0).addClass('on');
+        $(cont).hide().eq(0).show();
+        $(el).on(trigger,function(){
+            if(!($(this).hasClass('on'))){
+                $(this).addClass('on').siblings().removeClass('on');
+                var index = $(this).index();
+                $(cont).hide().eq(index).fadeIn();
+            }
+        })
+    }
+
+    $.pullNav = pullNav;
+    $.tabChange = tabChange;
+ 
 
 })(window, jQuery, function () {
 
@@ -48,16 +78,17 @@
     function getBreakPoints() {
         var swiper = this;
         if (swiper.params.useData) {
-            var nodeAttr = swiper.$el.find('.swiper-wrapper').get(0).attributes;
+            var nodeAttr = swiper.$el.find('.whir-wrapper').get(0).attributes;
             var data = {};
             var reg = /^[0-9]*$/;
             [].slice.call(nodeAttr).forEach(function (node) {
                 var attrName = node.name;
-                if (attrName.indexOf('swiper') === 0) {
-                    var exp = attrName.substring(7);
+                if (attrName.indexOf('whir') === 0) {
+                    var exp = attrName.substring(5);
                     data[exp] = {};
                     if (exp == 'play') { node.value === 'false' ? swiper.params.play = false : swiper.params.play = true }
                     if (exp == 'drag') { node.value === 'false' ? swiper.params.drag = false : swiper.params.drag = true }
+                    if (exp == 'loop') { node.value === 'false' ? swiper.params.drag = false : swiper.params.drag = true }
                     if (exp == 'pagination') { swiper.params.pagination.el=node.value }
                     if (exp == 'navigation') { swiper.params.navigation.prevEl=node.value.split(',')[0]; swiper.params.navigation.nextEl = node.value.split(',')[1];}
                     if (reg.test(exp)) {
@@ -77,14 +108,13 @@
 
     function setParams() {
         var swiper = this;
-        swiper.slides = swiper.$el.find('.swiper-slide');
-        swiper.wrapper = swiper.$el.find('.swiper-wrapper');
+        swiper.slides = swiper.$el.find('.whir-slide');
+        swiper.wrapper = swiper.$el.find('.whir-wrapper');
         if (swiper.params.play) {
             swiper.dir = '';
             swiper.realIndex = 0;
             swiper.checkBrowser();
-            swiper.realSlides = swiper.wrapper.find('.swiper-slide').length;
-            swiper.changeTransition(swiper.params.speed);
+            swiper.realSlides = swiper.wrapper.find('.whir-slide').length;
             swiper.isAnimating = false;
             swiper.addClass();
             swiper.params.initIndex != '' ? swiper.index = swiper.params.initIndex : swiper.index = 0;
@@ -145,7 +175,7 @@
     function addClass() {
         var swiper = this;
         for (var i = 0; i < swiper.slides.length; i++) {
-            $(swiper.slides[i]).attr('swiper-slide-index',i);
+            $(swiper.slides[i]).attr('whir-slide-index',i);
         }
     }
 
@@ -153,17 +183,17 @@
         var swiper = this;
         var params = swiper.params;
         if (params.slidesPerView === 1) {
-            swiper.wrapper.prepend($(swiper.slides[swiper.slides.length - 1]).clone(true).addClass('swiper-slide-duplicate'));
-            swiper.wrapper.append($(swiper.slides[0]).clone(true).addClass('swiper-slide-duplicate'));
-            swiper.slides = swiper.$el.find('.swiper-slide');
+            swiper.wrapper.prepend($(swiper.slides[swiper.slides.length - 1]).clone(true).addClass('whir-slide-duplicate'));
+            swiper.wrapper.append($(swiper.slides[0]).clone(true).addClass('whir-slide-duplicate'));
+            swiper.slides = swiper.$el.find('.whir-slide');
             swiper.index = 1;
         }
         else {
             for (var i = 0; i < params.slidesPerView - 1; i++) {
-                swiper.wrapper.prepend($(swiper.slides[swiper.slides.length - 1 - i]).clone(true).addClass('swiper-slide-duplicate'));
-                swiper.wrapper.append($(swiper.slides[i]).clone(true).addClass('swiper-slide-duplicate'));
+                swiper.wrapper.prepend($(swiper.slides[swiper.slides.length - 1 - i]).clone(true).addClass('whir-slide-duplicate'));
+                swiper.wrapper.append($(swiper.slides[i]).clone(true).addClass('whir-slide-duplicate'));
             }
-            swiper.slides = swiper.$el.find('.swiper-slide');
+            swiper.slides = swiper.$el.find('.whir-slide');
             swiper.index = swiper.params.slidesPerView - 1;
         }
     }
@@ -206,8 +236,6 @@
         if (swiper.params.play) {
             var totalWidth = (swiper.slides.length * swiper.singleWidth) + ((swiper.slides.length - 1) * space) + 20;
             swiper.wrapper.css('width', totalWidth + 'px');
-            // if (!swiper.support3d) {
-            // }
             swiper.getSlideGrid();
         }
         else {
@@ -234,21 +262,21 @@
     function upDateClass() {
         var swiper = this;
         var index = swiper.index;
-        swiper.pagination != undefined && swiper.pagination.els.forEach(function (el) { $(el).removeClass('swiper-pagination-active'); })
-        swiper.slides.removeClass('swiper-slide-active swiper-slide-prev swiper-slide-next');
+        swiper.pagination != undefined && swiper.pagination.els.forEach(function (el) { $(el).removeClass('whir-pagination-active'); })
+        swiper.slides.removeClass('whir-slide-active whir-slide-prev whir-slide-next');
         if (swiper.params.loop) {
-            var realIndex = swiper.wrapper.find('.swiper-slide').eq(index).attr('swiper-slide-index');
-            swiper.pagination != undefined && swiper.pagination.els[realIndex].addClass('swiper-pagination-active');
-            swiper.wrapper.find('.swiper-slide').eq(index).addClass('swiper-slide-active').prev().addClass('swiper-slide-prev');
-            swiper.wrapper.find('.swiper-slide').eq(index).addClass('swiper-slide-active').next().addClass('swiper-slide-next');
+            var realIndex = swiper.wrapper.find('.whir-slide').eq(index).attr('whir-slide-index');
+            swiper.pagination != undefined && swiper.pagination.els[realIndex].addClass('whir-pagination-active');
+            swiper.wrapper.find('.whir-slide').eq(index).addClass('whir-slide-active').prev().addClass('whir-slide-prev');
+            swiper.wrapper.find('.whir-slide').eq(index).addClass('whir-slide-active').next().addClass('whir-slide-next');
         } else {
-            swiper.pagination != undefined && swiper.pagination.els[index].addClass('swiper-pagination-active')
-            swiper.wrapper.find('.swiper-slide-index-' + realIndex + ':not(.swiper-slide-duplicate)').addClass('swiper-slide-active').prev().addClass('swiper-slide-prev');
-            swiper.wrapper.find('.swiper-slide-index-' + realIndex + ':not(.swiper-slide-duplicate)').next().addClass('swiper-slide-next');        }
+            swiper.pagination != undefined && swiper.pagination.els[index].addClass('whir-pagination-active')
+            swiper.wrapper.find('.whir-slide-index-' + realIndex + ':not(.whir-slide-duplicate)').addClass('whir-slide-active').prev().addClass('whir-slide-prev');
+            swiper.wrapper.find('.whir-slide-index-' + realIndex + ':not(.whir-slide-duplicate)').next().addClass('whir-slide-next');        }
     }
  
     function drag() {
-        var swiper = this, isDown = false, x, y, newx, translate, index,direction;
+        var swiper = this, isDown = false, x, y, newx, translate, index,direction='';
         swiper.wrapper.on('mousedown', function (event) {
             if (swiper.isAnimating) { return false }
             event = event || window.event;
@@ -318,7 +346,7 @@
                 newx = event.targetTouches[0].clientX - x;
                 newy =  event.targetTouches[0].clientY - y;
                 if(direction =='up'){return false }
-                if( (newx > 5 || newx <-5) &&direction == '') {  //第一次滑动判断滑动方向  如果是上下 则 return false 如果是左右 就禁用掉默认滑动事件 其中5是误差值
+                if( (newx > 5 || newx <-5) && direction == '') {  //第一次滑动判断滑动方向  如果是上下 则 return false 如果是左右 就禁用掉默认滑动事件 其中5是误差值
                     direction = 'aside';
                     if(newx < 0 ){swiper.dir = 'next'}
                     if(newx > 0) {swiper.dir='prev'}
@@ -434,9 +462,9 @@
 
     function slideNext() {
         var swiper = this;
-        swiper.dir = 'next';
         swiper.checkOverflow();
         setTimeout(function () {
+            swiper.dir = 'next';
             swiper.changeTransition(swiper.params.speed);
             var index = swiper.index;
             index >= swiper.maxSlide ? index = 0 : index++;
@@ -555,6 +583,8 @@
             swiper.index !== 0 && swiper.doTranslate(- swiper.slideGrid[swiper.index])
 
             swiper.transitionEnd();
+
+            // swiper.changeTransition(swiper.params.speed);
 
         }
 
@@ -693,7 +723,7 @@
             var swiper = this;
             var num = 0;
             if (swiper.params.loop) {
-                num = swiper.$el.find('.swiper-slide:not(.swiper-slide-duplicate)').length;
+                num = swiper.$el.find('.whir-slide:not(.whir-slide-duplicate)').length;
             }
             else {
                 num = swiper.maxSlide + 1;
@@ -701,7 +731,7 @@
             var box = swiper.params.pagination.el;
             swiper.pagination.els = [];
             for (var i = 0; i < num; i++) {
-                swiper.pagination.els[i] = $('<div class= \'swiper-pagination-bullet\'></div>').appendTo(box);
+                swiper.pagination.els[i] = $('<div class= \'whir-pagination-bullet\'></div>').appendTo(box);
             }
         },
     }
@@ -753,7 +783,7 @@
             for (var i = 0; i < thumbSlides.length; i++) {
                 thumbSlides[i].addEventListener(eventType, function (j) {
                     return function () {
-                        var index = $(thumbSlides[j]).attr('swiper-slide-index')*1;
+                        var index = $(thumbSlides[j]).attr('whir-slide-index')*1;
                         if (thumb.realIndex != index) {
                             thumb.realIndex = index;
                             swiper.slideTo(index);
@@ -767,9 +797,9 @@
         update: function () {
             var swiper = this;
             var realIndex = swiper.realIndex;
-            swiper.slides.removeClass('swiper-thumb-active');
-            $(swiper.$el.find('.swiper-slide[swiper-slide-index='+realIndex+']')).addClass('swiper-thumb-active');
-            // $(swiper.slides[realIndex]).addClass('swiper-thumb-active');
+            swiper.slides.removeClass('whir-thumb-active');
+            $(swiper.$el.find('.whir-slide[whir-slide-index='+realIndex+']')).addClass('whir-thumb-active');
+            // $(swiper.slides[realIndex]).addClass('whir-thumb-active');
         },
         afterSlide: function () {
             var swiper = this;
@@ -817,4 +847,7 @@
     Swiper.use(components);
 
     return Swiper;
+
+
+    //轮播插件结束 
 })

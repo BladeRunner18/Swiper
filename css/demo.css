@@ -6,11 +6,20 @@ code{
     font-family: 'consolas, microsoft yahei';
     letter-spacing: 1px;
 }
+ul li{
+    list-style: none;
+  
+}
+ul{
+    padding: 0px;
+    margin: 0px;
+}
 .container{
     width: 1000px;
     margin: 0px auto;
     padding: 50px 0px;
     position: relative;
+    overflow: hidden;
 }
 @media(max-width:1000px){
     .container{
@@ -30,14 +39,14 @@ code{
     font-size: 24px;
 }
 
-.swiper-container{
+.whir-container{
     overflow: hidden;
     position: relative;
 }
 
 
 
-.swiper-slide{
+.whir-slide{
     line-height: 300px;
     text-align: center;
     color: white;
@@ -71,12 +80,51 @@ code{
     margin-top: 20px;
     height: 120px;
 }
-.thumb5 .swiper-slide{
+.thumb5 .whir-slide{
     line-height: 120px;
     opacity: 0.3;
     transition: all 0.5s ease;
 }
-.thumb5 .swiper-thumb-active{
+.thumb5 .whir-thumb-active{
     opacity: 1;
 }
 
+
+.menu li{
+    position: relative;
+    line-height: 40px;
+    list-style-type: none;
+    padding-left: 20px;
+}
+.menu li a{color: #333333;text-decoration: none;display:block;border-bottom: 1px solid #e2e2e2;}
+.menu ul{
+    margin: 0px;
+    padding: 0px;
+}
+#root>li ul{display:none;}
+
+.arrow{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 0px;
+    top: 0px;
+    display: block;
+    background: pink;
+}
+
+.tab li{
+    display: inline-block;
+    width: 160px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-right: 20px;
+    transition: all 0.5s ease;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.tab .on{color: white;background: #4390EE;}
+
+.cont li{height: 300px;line-height: 300px;text-align: center;color: white;font-size: 24px;}

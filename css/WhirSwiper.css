@@ -25,14 +25,14 @@
   }
   
 
-.swiper-slide{
+.whir-slide{
     float: left;
 }
-.swiper-layout{
+.whir-layout{
     overflow: hidden;
     width: 100%;
 }
-.swiper-container{
+.whir-container{
     margin: 0 auto;
     position: relative;
     overflow: hidden;
@@ -41,7 +41,7 @@
     /* Fix of Webkit flickering */
     z-index: 1;
 }
-.swiper-wrapper::after{
+.whir-wrapper::after{
     content: "";
     display: block;
     height: 0px;
@@ -49,7 +49,7 @@
     visibility: hidden;
 
 }
-.swiper-wrapper{
+.whir-wrapper{
     position: relative;
     width: 100%;
     height: 100%;
@@ -67,12 +67,12 @@
     box-sizing: content-box;
 }
 
-.swiper-wrapper {
+.whir-wrapper {
     -webkit-transform: translate3d(0px, 0, 0);
     transform: translate3d(0px, 0, 0);
   }
 
-  .swiper-slide {
+  .whir-slide {
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
@@ -86,7 +86,7 @@
     transition-property: transform, -webkit-transform;
   }
 
-  .swiper-pagination{
+  .whir-pagination{
       width: 100%;
       position: absolute;
       bottom: 20px;
@@ -94,7 +94,7 @@
       text-align: center;
       z-index: 10;
   }
-  .swiper-pagination .swiper-pagination-bullet{
+  .whir-pagination .whir-pagination-bullet{
       width: 10px;
       height: 10px;
       border-radius: 50%;
@@ -103,11 +103,11 @@
       background: #d4d4d4;
       cursor: pointer;
   }
-  .swiper-pagination .swiper-pagination-active{
+  .whir-pagination .whir-pagination-active{
       background: #4390ee;
   }
 
-  .swiper-button-prev{
+  .whir-button-prev{
     color: #4390ee;
     position: absolute;
     z-index: 10;
@@ -124,14 +124,14 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.swiper-button-prev::before{
+.whir-button-prev::before{
     color: inherit;
     content: "\e501";
     line-height: 40px;
     opacity: 0.5;   
 }
 
-.swiper-button-next{
+.whir-button-next{
     color: #4390ee;
     position: absolute;
     z-index: 10;
@@ -147,15 +147,15 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-.swiper-button-next::before{
+.whir-button-next::before{
     content: "\e513";
     color: inherit;
     line-height: 40px;
     opacity: 0.5;   
 }
-.swiper-button-next:hover::before{
+.whir-button-next:hover::before{
     opacity: 1;   
 }
-.swiper-button-prev:hover::before{
+.whir-button-prev:hover::before{
     opacity: 1;   
 }
